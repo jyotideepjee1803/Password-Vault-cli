@@ -198,7 +198,6 @@ async function SignMenu(file, key) {
                 await SignMenu(file,key);
                 break;
             case 'Quit':
-                menu();
                 break;
             default:
                 await SignMenu(file, key);
@@ -235,11 +234,11 @@ async function menu() {
                 menu();
                 break;
             case 'Add a password to a vault':
-                console.error('Sign in to a vault\n');
+                console.error('⚠️ Sign in to a vault\n');
                 menu();
                 break;
             case 'Fetch a password from a vault':
-                console.error('Sign in to a vault\n');
+                console.error('⚠️ Sign in to a vault\n');
                 menu();
                 break;
             case 'Quit':
