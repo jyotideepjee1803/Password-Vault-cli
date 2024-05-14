@@ -1,4 +1,8 @@
 # Javascript Password Vault CLI Tool
+
+## Introduction 
+- This is a fun project where I provided my solution to a Coding Challenge [Build Your Own Password Manager](https://codingchallenges.fyi/challenges/challenge-password-manager/) by [John Crickett](https://github.com/JohnCrickett) 
+
 ## Install
 ```
 npm install -g vault
