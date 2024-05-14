@@ -93,7 +93,7 @@ function decrypt_AES(data, key) {
 
 async function storeRow(file, key) {
     if (!file || !key) {
-        console.log('Not signed in to vault. Sign in to vault again\n');
+        console.log('⚠️  Not signed in to vault. Sign in to vault again\n');
         return;
     }
     try {
@@ -142,7 +142,7 @@ async function storeRow(file, key) {
 
 async function getRow(file, key) {
     if (!file || !key) {
-        console.log('Not signed in to vault. Sign in to vault again\n');
+        console.log('⚠️  Not signed in to vault. Sign in to vault again\n');
         return;
     }
     try {
@@ -167,9 +167,9 @@ async function getRow(file, key) {
             }
         }
 
-        console.error('No record found');
+        console.error('⚠️  No record found');
     } catch (error) {
-        console.error("You've entered wrong master password");
+        console.error("⚠️  You've entered wrong master password");
         process.exit(1);
     }
 }
@@ -234,11 +234,11 @@ async function menu() {
                 menu();
                 break;
             case 'Add a password to a vault':
-                console.error('⚠️ Sign in to a vault\n');
+                console.error('⚠️  Sign in to a vault\n');
                 menu();
                 break;
             case 'Fetch a password from a vault':
-                console.error('⚠️ Sign in to a vault\n');
+                console.error('⚠️  Sign in to a vault\n');
                 menu();
                 break;
             case 'Quit':
