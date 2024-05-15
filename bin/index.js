@@ -4,11 +4,12 @@ import { program } from "commander";
 import inquirer from "inquirer";
 import crypto from "crypto";
 import { promises as fs } from "fs";
+import { errLog, successLog } from "../utils/logs.js";
 
 
 async function saveVault(vaultName, masterPassword) {
     await fs.writeFile(`${vaultName}.txt`, "Vault\n");
-    console.log(`Vault "${vaultName}" saved`);
+    successLog(`Vault "${vaultName}" saved`);
     return;
 }
 
@@ -32,7 +33,7 @@ async function createVaultMenu() {
     ]);
 
     if (answers.password !== answers.confirmPassword) {
-        console.error("Passwords do not match. Please try again.");
+        errLog("Passwords do not match. Please try again.");
         return;
     }
     await saveVault(answers.name, answers.password);
@@ -55,15 +56,15 @@ async function signinVault() {
     try {
         const file = await fs.readFile(`${answers.name}.txt`, { encoding: 'utf8' });
         if (!file) {
-            console.error("Vault doesn't exist. Try again");
+            errLog("Vault doesn't exist. Try again");
             process.exit(1);
         }
 
-        console.log('Thank you, you are now signed in.');
+        successLog('Thank you, you are now signed in.');
         var key = padKey(answers.password);
         await SignMenu(answers.name, key);
     } catch (error) {
-        console.error(error.message);
+        errLog(error.message);
     }
 }
 
@@ -93,7 +94,7 @@ function decrypt_AES(data, key) {
 
 async function storeRow(file, key) {
     if (!file || !key) {
-        console.log('⚠️  Not signed in to vault. Sign in to vault again\n');
+        errLog('⚠️  Not signed in to vault. Sign in to vault again\n');
         return;
     }
     try {
@@ -123,7 +124,7 @@ async function storeRow(file, key) {
         for (const e of rows) {
             const parts = e.split(':');
             if (parts[0] == answers.record) {
-                console.error('Password already exists for the record\n');
+                errLog('Password already exists for the record\n');
                 return;
             }
 
@@ -133,16 +134,16 @@ async function storeRow(file, key) {
         const encryptedPassword = encrypt_AES(password, key);
         const data = `${title}:${encryptedUsername}:${encryptedPassword}\n`;
         await fs.appendFile(`${file}.txt`, data);
-        console.log('Added password');
+        successLog('Added password');
     } catch (error) {
-        console.error(error.message);
+        errLog(error.message);
     }
 
 }
 
 async function getRow(file, key) {
     if (!file || !key) {
-        console.log('⚠️  Not signed in to vault. Sign in to vault again\n');
+        errLog('⚠️  Not signed in to vault. Sign in to vault again\n');
         return;
     }
     try {
@@ -162,14 +163,14 @@ async function getRow(file, key) {
                 //found
                 const decryptedUsername = decrypt_AES(parts[1], key);
                 const decryptedPassword = decrypt_AES(parts[2], key);
-                console.log(`username : ${decryptedUsername}, password : ${decryptedPassword}`);
+                successLog(`username : ${decryptedUsername}, password : ${decryptedPassword}`);
                 return;
             }
         }
 
-        console.error('⚠️  No record found');
+        errLog('⚠️  No record found');
     } catch (error) {
-        console.error("⚠️  You've entered wrong master password");
+        errLog("⚠️  You've entered wrong master password");
         process.exit(1);
     }
 }
@@ -203,7 +204,7 @@ async function SignMenu(file, key) {
                 await SignMenu(file, key);
         }
     } catch (error) {
-        console.error(error.message);
+        errLog(error.message);
     }
 }
 
@@ -234,11 +235,11 @@ async function menu() {
                 menu();
                 break;
             case 'Add a password to a vault':
-                console.error('⚠️  Sign in to a vault\n');
+                storeRow();
                 menu();
                 break;
             case 'Fetch a password from a vault':
-                console.error('⚠️  Sign in to a vault\n');
+                getRow();
                 menu();
                 break;
             case 'Quit':
@@ -247,7 +248,7 @@ async function menu() {
                 menu();
         }
     } catch (error) {
-        console.error(error.message);
+        errLog(error.message);
     }
 }
 
