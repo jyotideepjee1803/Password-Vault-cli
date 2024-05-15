@@ -1,5 +1,5 @@
 # Javascript Password Vault CLI Tool
-[![npm version](https://img.shields.io/npm/v/@draggerjd03/passvault.svg)](https://www.npmjs.com/package/password-vault-cli)
+[![npm version](https://img.shields.io/npm/v/password-vault-cli.svg)](https://www.npmjs.com/package/password-vault-cli)
 
 ## Install
 To install it globally just enter
