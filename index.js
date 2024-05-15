@@ -4,7 +4,7 @@ import { program } from "commander";
 import inquirer from "inquirer";
 import crypto from "crypto";
 import { promises as fs } from "fs";
-import { errLog, successLog } from "../utils/logs.js";
+import { errLog, successLog } from "./utils/logs.js";
 
 
 async function saveVault(vaultName, masterPassword) {
