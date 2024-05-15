@@ -2,8 +2,9 @@
 [![npm version](https://img.shields.io/npm/v/@draggerjd03/passvault.svg)](https://www.npmjs.com/package/@draggerjd03/passvault)
 
 ## Install
+To install it globally just enter
 ```
-npm install -g vault
+npm i -g password-vault-cli
 ```
 
 ## Features
