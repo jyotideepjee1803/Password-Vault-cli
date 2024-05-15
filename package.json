@@ -10,6 +10,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "password",
+    "vault cli",
+    "password cli",
+    "encryption"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
