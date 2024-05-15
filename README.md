@@ -1,7 +1,5 @@
 # Javascript Password Vault CLI Tool
 [![npm version](https://img.shields.io/npm/v/@draggerjd03/passvault.svg)](https://www.npmjs.com/package/@draggerjd03/passvault)
-## Introduction 
-- This is a fun project where I provided my solution to a Coding Challenge [Build Your Own Password Manager](https://codingchallenges.fyi/challenges/challenge-password-manager/) by [John Crickett](https://github.com/JohnCrickett) 
 
 ## Install
 ```
